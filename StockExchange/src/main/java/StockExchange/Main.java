@@ -4,45 +4,60 @@
  * and open the template in the editor.
  */
 package StockExchange;
+import java.util.Vector;
 
 /**
  *
  * @author dannibrito
  */
 public class Main {
+    
+    static Vector<Empresa> empresas = new Vector();
+    
+    static int periodoActual = 0;
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Empresa google = new Empresa("Google", 130);
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        google.avanzarPeriodo();
-        System.out.println(google.toString());
-        google.imprimirHistograma();
+        
+        Empresa amazon = new Empresa("Amazon.com", 3200);
+        Empresa apple = new Empresa("Apple", 100);
+        Empresa facebook = new Empresa("Facebook", 280);
+        Empresa google = new Empresa("Google", 1600);
+        Empresa nvidia = new Empresa("NVIDIA", 500);
+        Empresa tesla = new Empresa("Tesla Motors", 400);
+        Empresa disney = new Empresa("Walt Disney", 130);
+        
+        empresas.add(amazon);
+        empresas.add(apple);
+        empresas.add(facebook);
+        empresas.add(google);
+        empresas.add(nvidia);
+        empresas.add(tesla);
+        empresas.add(disney);
+        
+        avanzarPeriodo();
+        
+        Portafolio portafolio = new Portafolio(27000);
+        portafolio.comprarAcciones(disney, 5);
+        portafolio.comprarAcciones(facebook, 4);
+        
+        avanzarPeriodo();
+        portafolio.comprarAcciones(nvidia, 10);
+        
+        avanzarPeriodo();
+        portafolio.comprarAcciones(disney, 2);
+        
+        portafolio.imprimirTransacciones();
+        
+    }
+    
+    public static void avanzarPeriodo() {
+        periodoActual += 1;
+        for(Empresa empresa: empresas) {
+            empresa.avanzarPeriodo();
+        }
     }
     
 }
