@@ -20,6 +20,12 @@ public class AccionDisponible {
         this.valorDeCompra = empresa.precioActual * numeroDeAcciones;
         this.numeroDeAcciones = numeroDeAcciones;
     }
+
+    @Override
+    public String toString() {
+        return "AccionDisponible{" + "empresa=" + empresa + ", valorDeCompra=" + valorDeCompra + ", numeroDeAcciones=" + numeroDeAcciones + '}';
+    }
+    
     
     
     

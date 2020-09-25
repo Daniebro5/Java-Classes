@@ -25,7 +25,7 @@ public class Main {
         Empresa apple = new Empresa("Apple", 100);
         Empresa facebook = new Empresa("Facebook", 280);
         Empresa google = new Empresa("Google", 1600);
-        Empresa nvidia = new Empresa("NVIDIA", 500);
+        Empresa nvidia = new Empresa("NVIDIA---", 500);
         Empresa tesla = new Empresa("Tesla Motors", 400);
         Empresa disney = new Empresa("Walt Disney", 130);
         
@@ -39,7 +39,7 @@ public class Main {
         
         avanzarPeriodo();
         
-        Portafolio portafolio = new Portafolio(27000);
+        Portafolio portafolio = new Portafolio(127000);
         portafolio.comprarAcciones(disney, 5);
         portafolio.comprarAcciones(facebook, 4);
         
@@ -48,6 +48,15 @@ public class Main {
         
         avanzarPeriodo();
         portafolio.comprarAcciones(disney, 2);
+        
+        avanzarPeriodo();
+        portafolio.venderAcciones(portafolio.accionesDisponibles.elementAt(1), 4);
+        portafolio.comprarAcciones(amazon, 7);
+        avanzarPeriodo();
+        portafolio.venderAcciones(portafolio.accionesDisponibles.elementAt(4), 1);
+        portafolio.venderAcciones(portafolio.accionesDisponibles.elementAt(3), 2);
+        
+        
         
         portafolio.imprimirTransacciones();
         

@@ -31,7 +31,7 @@ public class Portafolio {
             
         } else {
             
-            Transaccion transaccion = new Transaccion("Compra", empresa.acciones.elementAt(0).periodo, empresa, numeroDeAcciones);
+            Transaccion transaccion = new Transaccion("Compra", empresa.acciones.elementAt(0).periodo, empresa, numeroDeAcciones, this.capital);
             this.transacciones.add(transaccion);
             
             AccionDisponible accion = new AccionDisponible(empresa, numeroDeAcciones);
@@ -48,7 +48,7 @@ public class Portafolio {
             
         } else {
             
-            Transaccion transaccion = new Transaccion("Venta", accion.empresa.acciones.elementAt(0).periodo, accion.empresa, numeroDeAcciones);
+            Transaccion transaccion = new Transaccion("Venta", accion.empresa.acciones.elementAt(0).periodo, accion.empresa, numeroDeAcciones, this.capital);
             this.transacciones.add(transaccion);
             
             accion.numeroDeAcciones -= numeroDeAcciones;
@@ -61,7 +61,7 @@ public class Portafolio {
     public void imprimirTransacciones() {
         String aux = "\nListado de Transacciones\n";
         aux += "Capital original: " + this.capitalOriginal;
-        aux += "\n\n\tPeriodo\tTipo\tEmpresa\tNum\tValor Accion\tInversion\tSaldo";
+        aux += "\n\n\tPeriodo\tTipo\tEmpresa\t\tNum\tValor Accion\tInversion\tSaldo";
         
         for(Transaccion transaccion: this.transacciones) {
             aux += transaccion.toString();

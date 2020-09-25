@@ -16,13 +16,22 @@ public class Transaccion {
     Empresa empresa;
     int numeroDeAcciones;
     double valorTotal;
+    double saldo;
 
-    public Transaccion(String tipo, int periodo, Empresa empresa, int numeroDeAcciones) {
+    public Transaccion(String tipo, int periodo, Empresa empresa, int numeroDeAcciones, double capital) {
         this.tipo = tipo;
         this.periodo = periodo;
         this.empresa = empresa;
         this.numeroDeAcciones = numeroDeAcciones;
         this.valorTotal = empresa.precioActual * numeroDeAcciones;
+        
+        
+        // tipo == "Compra"
+        if( "Compra".equals(tipo) ) {
+            this.saldo = capital - this.valorTotal;
+        } else {
+            this.saldo = capital + this.valorTotal;
+        }
     }
 
     @Override
@@ -31,9 +40,13 @@ public class Transaccion {
                 "\t" + tipo +
                 "\t" + empresa.nombre +
                 "\t" + numeroDeAcciones +
-                "\t" + valorTotal / numeroDeAcciones +
-                "\t" + valorTotal +
-                "\t"; // falta el saldo
+                "\t" + redondearADosDecimales(valorTotal / numeroDeAcciones) +
+                "\t\t" + redondearADosDecimales(valorTotal) +
+                "\t\t" + redondearADosDecimales(saldo);
+    }
+    
+    public double redondearADosDecimales(double numero) {
+        return Math.round(numero * 100.0) / 100.0;
     }
 
 }
