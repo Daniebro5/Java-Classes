@@ -5,6 +5,8 @@
  */
 package StockExchange;
 import java.util.Vector;
+import java.time.*;
+import java.time.temporal.TemporalAdjusters;
 
 /**
  *
@@ -51,9 +53,13 @@ public class Portafolio {
             Transaccion transaccion = new Transaccion("Venta", accion.empresa.acciones.elementAt(0).periodo, accion.empresa, numeroDeAcciones, this.capital);
             this.transacciones.add(transaccion);
             
-            accion.numeroDeAcciones -= numeroDeAcciones;
-            
             this.capital += accion.empresa.precioActual * numeroDeAcciones;
+            
+            if(accion.numeroDeAcciones == numeroDeAcciones) {
+                this.accionesDisponibles.remove(accion);
+            } else {
+                accion.numeroDeAcciones -= numeroDeAcciones;
+            }
             
         }
     }
@@ -69,13 +75,13 @@ public class Portafolio {
         
         System.out.println(aux);
     }
-    
 
     @Override
     public String toString() {
-        return "Portafolio{" + "capital=" + capital + ", capitalOriginal=" + capitalOriginal + ", transacciones=" + transacciones + '}';
+        return "Portafolio{" + "accionesDisponibles=" + accionesDisponibles + '}';
     }
     
+
     
     
 }

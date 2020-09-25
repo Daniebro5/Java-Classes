@@ -49,14 +49,22 @@ public class Main {
         avanzarPeriodo();
         portafolio.comprarAcciones(disney, 2);
         
+        System.out.println(portafolio.toString());
+        
         avanzarPeriodo();
         portafolio.venderAcciones(portafolio.accionesDisponibles.elementAt(1), 4);
         portafolio.comprarAcciones(amazon, 7);
+        
+        System.out.println("Aqui vendi de facebook " + portafolio.toString());
+        
         avanzarPeriodo();
-        portafolio.venderAcciones(portafolio.accionesDisponibles.elementAt(4), 1);
-        portafolio.venderAcciones(portafolio.accionesDisponibles.elementAt(3), 2);
+        portafolio.venderAcciones(portafolio.accionesDisponibles.elementAt(3), 1);
         
         
+        
+        portafolio.venderAcciones(portafolio.accionesDisponibles.elementAt(1), 2);
+        
+        System.out.println(portafolio.toString());
         
         portafolio.imprimirTransacciones();
         

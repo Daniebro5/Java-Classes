@@ -23,10 +23,7 @@ public class AccionDisponible {
 
     @Override
     public String toString() {
-        return "AccionDisponible{" + "empresa=" + empresa + ", valorDeCompra=" + valorDeCompra + ", numeroDeAcciones=" + numeroDeAcciones + '}';
+        return "AccionDisponible{" + "empresa=" + empresa.nombre + "numeroDeAcciones=" + numeroDeAcciones + "}\n";
     }
-    
-    
-    
     
 }
