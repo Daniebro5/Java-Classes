@@ -16,14 +16,22 @@ public class Portafolio {
     
     double capital;
     double capitalOriginal;
+    double inversion;
+    double ganancias;
+    
     Vector<Transaccion> transacciones;
     Vector<AccionDisponible> accionesDisponibles;
+    Vector<AccionVendida> accionesVendidas;
 
     public Portafolio(double capital) {
         this.capital = capital;
         this.capitalOriginal = capital;
         transacciones = new Vector();
         accionesDisponibles = new Vector();
+        accionesVendidas = new Vector();
+        
+        this.inversion = 0;
+        this.ganancias = 0;
     }
     
     public void comprarAcciones(Empresa empresa, int numeroDeAcciones) {
@@ -40,6 +48,8 @@ public class Portafolio {
             this.accionesDisponibles.add(accion);
             
             this.capital -= empresa.precioActual * numeroDeAcciones;
+            
+            this.inversion += empresa.precioActual * numeroDeAcciones;
         }
     }
     
@@ -53,6 +63,9 @@ public class Portafolio {
             Transaccion transaccion = new Transaccion("Venta", accion.empresa.acciones.elementAt(0).periodo, accion.empresa, numeroDeAcciones, this.capital);
             this.transacciones.add(transaccion);
             
+            AccionVendida accionVendida = new AccionVendida(accion, numeroDeAcciones);
+            this.accionesVendidas.add(accionVendida);
+            
             this.capital += accion.empresa.precioActual * numeroDeAcciones;
             
             if(accion.numeroDeAcciones == numeroDeAcciones) {
@@ -60,6 +73,8 @@ public class Portafolio {
             } else {
                 accion.numeroDeAcciones -= numeroDeAcciones;
             }
+            
+            this.ganancias += accion.empresa.precioActual * numeroDeAcciones;
             
         }
     }
@@ -73,6 +88,20 @@ public class Portafolio {
             aux += transaccion.toString();
         }
         
+        System.out.println(aux);
+    }
+    
+    public void imprimirRentabilidad() {
+        String aux = "\nListado de Rentabilidad\n";
+        aux += "Capital original: " + this.capitalOriginal;
+        aux += "\n\n\tEmpresa\t\tNum\tInversion\tValor Accion\tValor Actual\tRentabilidad\tPorcentaje";
+        
+        for(AccionVendida accion: this.accionesVendidas) {
+            aux += accion.toString();
+        }
+        aux += "\nCapital actual: " + this.capital;
+        aux += "\nInversion: " + this.inversion;
+        aux += "\nGanancias: " + this.ganancias;
         System.out.println(aux);
     }
 
