@@ -49,19 +49,14 @@ public class Main {
         avanzarPeriodo();
         portafolio.comprarAcciones(disney, 2);
         
-        
         avanzarPeriodo();
         portafolio.venderAcciones(portafolio.accionesDisponibles.elementAt(1), 4);
         portafolio.comprarAcciones(amazon, 7);
         
-        
         avanzarPeriodo();
         portafolio.venderAcciones(portafolio.accionesDisponibles.elementAt(3), 1);
         
-        
-        
         portafolio.venderAcciones(portafolio.accionesDisponibles.elementAt(1), 2);
-        
         
         portafolio.imprimirTransacciones();
         portafolio.imprimirRentabilidad();
