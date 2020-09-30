@@ -54,6 +54,15 @@ public class Main {
                 do {
             
                     String entrada = JOptionPane.showInputDialog("Ingrese su cadena");
+                    if (nombre.matcher(entrada).find()) {
+                        //imprimes hola y el nombre
+                    } else if (){
+                        
+                    }else if (salir.matcher(entrada).find()){
+                        bandera = false;
+                    } else {
+                        // decir que no hay coincidencia
+                    }
             
                 } while (bandera);
             
