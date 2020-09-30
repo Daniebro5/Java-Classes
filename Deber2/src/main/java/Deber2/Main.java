@@ -40,22 +40,34 @@ public class Main {
         
         Pattern salir = Pattern.compile("(quit|salir|q|s)", Pattern.CASE_INSENSITIVE);
         
-        // creamos un objeto que busque la expresion dentro del input
-        Matcher matcher = tomorrow.matcher("dame la tODAy");
+        String contra = JOptionPane.showInputDialog("Ingrese su contraseña");
         
-        boolean encontrado = matcher.find();
         
-        do {
-            String entrada = JOptionPane.showInputDialog("Ingrese su cadena");
+        int contador = 0;
+        
+        while (contador < 4) {
             
-            if(password.matcher(entrada).find()) {
-                JOptionPane.showMessageDialog(null, "Bienvenido");
+            if(password.matcher(contra).find()) {
+            JOptionPane.showMessageDialog(null, "Bienvenido");
+            boolean bandera = true;
+            
+                do {
+            
+                    String entrada = JOptionPane.showInputDialog("Ingrese su cadena");
+            
+                } while (bandera);
+            
             } else {
                 JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+                contador += 1;
             }
-            
-            
-        } while (true);
+        }
+        
+        
+        
+        
+        
+        
     }
     
 }
