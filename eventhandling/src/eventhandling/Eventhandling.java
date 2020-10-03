@@ -5,12 +5,19 @@
  */
 package eventhandling;
 
+import java.awt.event.MouseEvent;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -21,24 +28,76 @@ public class Eventhandling extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
+        // tipos de eventos 
+        
+        // foreground -> interaccion con el usuario
+        
+        // background -> no requiere interaccion con el usuario
+        
+        // foreground events for user
+        // Mouse - Key - Drag - Window(Cerrar y abrir la ventana)
+        
+        // event handling -> decidir q hacer ante un evento
+        // estructura de eventos:
+            // objetivo -> nodo en el cual ocurrio el evento
+            // fuente -> mouse/teclado
+            // tipo -> click/arrastrar/presion de tecla
             
+        // Ejemplo
+        
+        // Dibujamos un círculo
+        Circle circle = new Circle();
+        
+        // Lo posicionamos
+        circle.setCenterX(300);
+        circle.setCenterY(135);
+        
+        // le damos un radio
+        circle.setRadius(25);
+        
+        // le damos un color
+        circle.setFill(Color.BROWN);
+        
+        // le damos un ancho de linea
+        circle.setStrokeWidth(20);
+        
+        // setting the text
+        Text text = new Text("Haz clic en el circulo para cambiar su color");
+        
+        // le damos una fuente al texto
+        text.setFont(Font.font(null, FontWeight.BOLD, 15));
+        
+        // le damos color
+        text.setFill(Color.CRIMSON);
+        
+        //le damos una posicion
+        text.setX(150);
+        text.setY(50);
+        
+        EventHandler<MouseEvent> eventHandler;
+        eventHandler = new EventHandler<MouseEvent>() {
             @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
+            public void handle(MouseEvent event) {
+                System.out.println("Hola mundo");
+                circle.setFill(Color.DARKSLATEBLUE);
             }
-        });
+        };
         
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
+        // Registrat el evento
+        circle.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
         
-        Scene scene = new Scene(root, 300, 250);
+        Group root = new Group(circle, text);
         
-        primaryStage.setTitle("Hello World!");
+        Scene scene = new Scene(root, 600, 300);
+        
+        scene.setFill(Color.LAVENDER);
+        
+        primaryStage.setTitle("Ejemplo de eventos");
+        
         primaryStage.setScene(scene);
+        
         primaryStage.show();
+        
     }
 
     /**
