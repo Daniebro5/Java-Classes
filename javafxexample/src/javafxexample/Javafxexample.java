@@ -13,6 +13,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
 // Clases de JavaFX Importantes
@@ -43,6 +45,7 @@ public class Javafxexample extends Application {
     
     @Override
     public void start(Stage primaryStage) {
+        
         /*
         Cóigo de nuestra aplicacion JavaFX
         (Stage, scene, scene graph)
@@ -52,7 +55,7 @@ public class Javafxexample extends Application {
             y añadimos el grafo
         3. Preparamos un escenario y añadimos la escena
         
-        */
+       
         
         // 1 (Group, Region, WebView)
         Group root = new Group();
@@ -89,7 +92,49 @@ public class Javafxexample extends Application {
         
         // Mostramos el escenario
         primaryStage.show();
+        
+        // Ejemplo 1
+        
+        // creamos un objeto group/ root
+        Group root = new Group();
+        //creamos una escena y le pasamos el objeto group
+        //ademas ponemos las dimensiones
+        Scene scene = new Scene(root, 1200, 300);
+        //ponemos un color a la escena
+        scene.setFill(Color.BLUEVIOLET);
+        // le damos un titulo al escenario
+        primaryStage.setTitle("Ejemplo");
+        //añadimos la escena al escenario
+        primaryStage.setScene(scene);
+        // mostramos el escenario
+        primaryStage.show();
+        
+        */
+        
+        // ejemplo 2
+        
+        //creamos un objeto Line
+        Line line = new Line();
+        
+        line.setStartX(100.0);
+        line.setStartY(150.0);
+        line.setEndX(500.0);
+        line.setEndY(150.0);
+        
+        Group root = new Group(line);
+        
+        Scene scene = new Scene(root, 600, 300);
+        
+        primaryStage.setTitle("Linea recta");
+        
+        primaryStage.setScene(scene);
+        
+        primaryStage.show();
+        
+        
     }
+    
+    
 
     /**
      * @param args the command line arguments
