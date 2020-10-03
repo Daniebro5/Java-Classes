@@ -15,6 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 // Clases de JavaFX Importantes
@@ -109,7 +111,7 @@ public class Javafxexample extends Application {
         // mostramos el escenario
         primaryStage.show();
         
-        */
+        
         
         // ejemplo 2
         
@@ -129,6 +131,27 @@ public class Javafxexample extends Application {
         
         primaryStage.setScene(scene);
         
+        primaryStage.show();
+        */
+        
+        // Creamos un objeto Text
+        Text text = new Text();
+        
+        // le ponemos un tamaño
+        text.setFont(new Font(45));
+        
+        // ponemos la posición del texto
+        text.setX(50);
+        text.setY(150);
+        text.setFill(Color.SLATEGRAY);
+        
+        text.setText("Clases de JavaFX");
+        
+        Group root = new Group(text);
+        Scene scene = new Scene(root, 600, 300);
+        
+        primaryStage.setTitle("Texto plano");
+        primaryStage.setScene(scene);
         primaryStage.show();
         
         
