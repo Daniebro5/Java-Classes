@@ -49,11 +49,15 @@ public class UIControls extends Application {
         // ProgressBar
         // Slider
         
+        UIObjects persona = new UIObjects();
+        persona.nombre = "Danni";
+        persona.edad = 25;
+        
         // creating label email
-        Text emailLabel = new Text("Email");
+        Text emailLabel = new Text(persona.nombre);
         
         // creating label password
-        Text passwordLabel = new Text("Password");
+        Text passwordLabel = new Text("" + persona.edad);
         
         // create textfield for email
         TextField emailTextField = new TextField();
@@ -95,6 +99,8 @@ public class UIControls extends Application {
         primaryStage.setScene(scene);
         
         primaryStage.show();
+        
+        
         
     }
 
