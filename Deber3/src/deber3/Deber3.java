@@ -125,7 +125,17 @@ public class Deber3 extends Application {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Hello World!");
-//                primaryStage.setScene(scene2);
+                Validador validador = new Validador();
+                if(validador.verificarCedula(cedulaField.getText())
+                    &&
+                    validador.verificarCorreo(correoField.getText())
+                ) {
+                    System.out.println("son correctos");
+                    // set de la nueva scena y crear la nueva grilla
+                } else {
+                    System.out.println("no son correctos");
+                }
+                
                 
             }
         });
