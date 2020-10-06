@@ -130,8 +130,12 @@ public class Deber3 extends Application {
                     &&
                     validador.verificarCorreo(correoField.getText())
                 ) {
+                    //Orden orden = new Orden();
+                    // orden.tamanio = tamanioField.text();
                     System.out.println("son correctos");
                     // set de la nueva scena y crear la nueva grilla
+                    
+                    // al final mostrar el precio total con un JOptionPane
                 } else {
                     System.out.println("no son correctos");
                 }

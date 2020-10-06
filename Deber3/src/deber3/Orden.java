@@ -10,6 +10,22 @@ package deber3;
  * @author dannibrito
  */
 public class Orden {
+    
+    // si tienes tiempo, agregar la clase cliente
+    // Cliente cliente;
+    
     String tipo, tamanio;
     String[] ingredietesAdicionales;
+    int numeroBebidas;
+    
+    double costeTotal(){
+        return 10.0;
+    }
+    
+    
+    
 }
+
+
+// dentro de la clase cliente
+// nombre, dirrecion, correo y cedula
