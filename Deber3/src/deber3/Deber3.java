@@ -54,9 +54,15 @@ public class Deber3 extends Application {
         RadioButton fiestaRadio = new RadioButton("Fiesta");
         fiestaRadio.setToggleGroup(groupSize);
 
+        
+        Text typeLabel = new Text("Escoge tu pizza");
+        
         ChoiceBox typechoiceBox = new ChoiceBox();
         typechoiceBox.getItems().addAll("All Meats", "BBQ", "Hawaiiana", "Chocolate", "Pollo Teriyaki");
 
+        
+        Text adicionalLabel = new Text("Deseas Ingredientes Adicionales?");
+        
         CheckBox quesoCheckBox = new CheckBox("Queso");
         quesoCheckBox.setIndeterminate(false);
 
@@ -69,15 +75,7 @@ public class Deber3 extends Application {
         CheckBox panCheckBox = new CheckBox("Pan de Ajo");
         panCheckBox.setIndeterminate(false);
 
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-//        btn.setOnAction(new EventHandler<ActionEvent>() {
-//            
-//            @Override
-//            public void handle(ActionEvent event) {
-//                System.out.println("Hello World!");
-//            }
-//        });
+        
 
         GridPane grid = new GridPane();
         grid.setMinSize(300, 300);
@@ -94,9 +92,48 @@ public class Deber3 extends Application {
         grid.add(correoField, 1, 2);
         grid.add(cedulaLabel, 0, 3);
         grid.add(cedulaField, 1, 3);
+        
+        grid.add(tamanioLabel, 0, 5);
+        grid.add(pequeniaRadio, 0, 6);
+        grid.add(medianaRadio, 1, 6);
+        grid.add(familiarRadio, 2, 6);
+        grid.add(fiestaRadio, 3, 6);
+        
+        grid.add(typeLabel, 0, 8);
+        grid.add(typechoiceBox, 1, 8);
+        
+        
+        grid.add(adicionalLabel, 0, 9);
+        grid.add(quesoCheckBox, 0, 10);
+        grid.add(pepperoniCheckBox, 1, 10);
+        grid.add(jamonCheckBox, 2, 10);
+        grid.add(panCheckBox, 3, 10);
+        
 
+        
+        Button btn = new Button();
+        btn.setText("Pasar a comprar");
+        
+        
+//        GridPane grid2 = new GridPane();
+//        grid2.setMinSize(333, 333);
+//        grid2.add(direccionLabel, 0, 0);
+        
+//        Scene scene2 = new Scene(grid2);
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Hello World!");
+//                primaryStage.setScene(scene2);
+                
+            }
+        });
+        
+        grid.add(btn, 4, 4);
+        
         Scene scene = new Scene(grid);
-
+        
         primaryStage.setTitle("Pizzeria");
         primaryStage.setScene(scene);
         primaryStage.show();
