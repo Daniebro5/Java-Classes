@@ -5,6 +5,7 @@
  */
 package deber3;
 
+import java.util.Vector;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,6 +22,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -54,15 +56,13 @@ public class Deber3 extends Application {
         RadioButton fiestaRadio = new RadioButton("Fiesta");
         fiestaRadio.setToggleGroup(groupSize);
 
-        
         Text typeLabel = new Text("Escoge tu pizza");
-        
+
         ChoiceBox typechoiceBox = new ChoiceBox();
         typechoiceBox.getItems().addAll("All Meats", "BBQ", "Hawaiiana", "Chocolate", "Pollo Teriyaki");
 
-        
         Text adicionalLabel = new Text("Deseas Ingredientes Adicionales?");
-        
+
         CheckBox quesoCheckBox = new CheckBox("Queso");
         quesoCheckBox.setIndeterminate(false);
 
@@ -74,8 +74,6 @@ public class Deber3 extends Application {
 
         CheckBox panCheckBox = new CheckBox("Pan de Ajo");
         panCheckBox.setIndeterminate(false);
-
-        
 
         GridPane grid = new GridPane();
         grid.setMinSize(300, 300);
@@ -92,70 +90,106 @@ public class Deber3 extends Application {
         grid.add(correoField, 1, 2);
         grid.add(cedulaLabel, 0, 3);
         grid.add(cedulaField, 1, 3);
-        
-        grid.add(tamanioLabel, 0, 5);
-        grid.add(pequeniaRadio, 0, 6);
-        grid.add(medianaRadio, 1, 6);
-        grid.add(familiarRadio, 2, 6);
-        grid.add(fiestaRadio, 3, 6);
-        
-        grid.add(typeLabel, 0, 8);
-        grid.add(typechoiceBox, 1, 8);
-        
-        
-        grid.add(adicionalLabel, 0, 9);
-        grid.add(quesoCheckBox, 0, 10);
-        grid.add(pepperoniCheckBox, 1, 10);
-        grid.add(jamonCheckBox, 2, 10);
-        grid.add(panCheckBox, 3, 10);
-        
 
-        
+        grid.add(tamanioLabel, 0, 4);
+        grid.add(pequeniaRadio, 0, 5);
+        grid.add(medianaRadio, 1, 5);
+        grid.add(familiarRadio, 2, 5);
+        grid.add(fiestaRadio, 3, 5);
+
+        grid.add(typeLabel, 0, 6);
+        grid.add(typechoiceBox, 1, 6);
+
+        grid.add(adicionalLabel, 0, 7);
+        grid.add(quesoCheckBox, 0, 8);
+        grid.add(pepperoniCheckBox, 1, 8);
+        grid.add(jamonCheckBox, 2, 8);
+        grid.add(panCheckBox, 3, 8);
+
         Button btn = new Button();
         btn.setText("Pasar a comprar");
-        
-        
-//        GridPane grid2 = new GridPane();
-//        grid2.setMinSize(333, 333);
-//        grid2.add(direccionLabel, 0, 0);
-        
-//        Scene scene2 = new Scene(grid2);
+
+
         btn.setOnAction(new EventHandler<ActionEvent>() {
-            
+
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
+                // validamos la cedula y el correo
                 Validador validador = new Validador();
-                if(validador.verificarCedula(cedulaField.getText())
-                    &&
-                    validador.verificarCorreo(correoField.getText())
-                ) {
-                    //Orden orden = new Orden();
-                    // orden.tamanio = tamanioField.text();
-                    System.out.println("son correctos");
-                    // set de la nueva scena y crear la nueva grilla
+
+                if (validador.verificarCedula(cedulaField.getText())
+                        && validador.verificarCorreo(correoField.getText())) {
+                    // (int) bebidasLabel.getText() < 11;
+                    Orden orden = new Orden();
+
+                    // obtenemos el tamaño
+                    RadioButton selected = (RadioButton) groupSize.getSelectedToggle();
+                    orden.tamanio = selected.getText();
                     
-                    // al final mostrar el precio total con un JOptionPane
+                    // obtenemos el tipo
+                    orden.tipo = typechoiceBox.getSelectionModel().getSelectedItem().toString();
+                    
+                    // Ingredientes adicionales
+                    orden.ingredientesAdicionales = new Vector();
+                    if(quesoCheckBox.isSelected()) {
+                        orden.ingredientesAdicionales.add("Queso");
+                    }
+                    if(pepperoniCheckBox.isSelected()) {
+                        orden.ingredientesAdicionales.add("Pepperoni");
+                    }
+                    if(jamonCheckBox.isSelected()) {
+                        orden.ingredientesAdicionales.add("Jamón");
+                    }
+                    if(panCheckBox.isSelected()) {
+                        orden.ingredientesAdicionales.add("Pan de Ajo");
+                    }
+                    
+                    // falta las bebidas y el número de bebidas
+                    
+                    Text tipoOrden = new Text("1 pizza " + orden.tamanio + " de " + orden.tipo);
+                    Text valorTipo = new Text("$" + orden.precioPizza());
+                    
+                    Text numBebidasOrden = new Text(orden.numeroBebidas + " gaseosas");
+                    Text numBebidasValor = new Text("$" + orden.precioBebidas());
+                    
+                    Text iva = new Text("IVA (12%)");
+                    Text ivaValor = new Text("$" + orden.costeTotal() * 0.12);
+                    
+                    Text total = new Text("Total");
+                    Text totalValor = new Text("$" + orden.costeTotal() * 1.12);
+                    
+                    GridPane grid2 = new GridPane();
+                    grid2.setPadding(new Insets(10, 10, 10, 10));
+                    grid2.setVgap(4);
+                    grid2.setHgap(4);
+                    grid2.setAlignment(Pos.CENTER);
+                    grid2.setMinSize(333, 333);
+                    grid2.add(tipoOrden, 0, 0);
+                    grid2.add(valorTipo, 1, 0);
+                    grid2.add(numBebidasOrden, 0, 1);
+                    grid2.add(numBebidasValor, 1, 1);
+                    grid2.add(iva, 0, 2);
+                    grid2.add(ivaValor, 1, 2);
+                    grid2.add(total, 0, 3);
+                    grid2.add(totalValor, 1, 3);
+                    Scene scene2 = new Scene(grid2);
+                    primaryStage.setScene(scene2);
+                    
                 } else {
-                    System.out.println("no son correctos");
+                    
                 }
-                
-                
             }
         });
-        
+
         grid.add(btn, 4, 4);
-        
+
         Scene scene = new Scene(grid);
-        
+
         primaryStage.setTitle("Pizzeria");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         launch(args);
     }
